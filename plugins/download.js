@@ -140,6 +140,7 @@ cmd({
 async(conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
     try {
         if (!q && !q.startsWith("https://")) return reply("give me mediafire url")
+        react("❌")
         //fetch data from api  
         let data = await fetchJson(`${baseUrl}/api/mediafiredl?url=${q}`)
         reply("*Uploading...*")
@@ -162,7 +163,9 @@ cmd({
 },
 async(conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
     try {
-if (!q) return m.reply(`*give me a app name*\n\n_Ex:Whatsapp_`)
+if (!q) return reply("*give me a app name*\n\n_Ex:Whatsapp_")
+        react ("❌")
+let res = await download(q)  
 let icon = res.icon
 let paket = res.package
 let size = res.size
