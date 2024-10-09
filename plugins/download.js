@@ -164,18 +164,7 @@ async(conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, send
     try {
 if (!q) return reply("*give me a app name*\n\n_Ex:Whatsapp_")
 let res = await download(q)  
-let icon = res.icon
-let paket = res.package
-let size = res.size
-let nama = res.name
-let up = res.lastup
 let file = res.dllink        
-let desc = `*APK DOWNLOAD*
-Nama : ${nama}
-Update : ${up}
-Size : ${size}
-`    
-await conn.sendMessage(from,{image:{url: res.icon},caption:desc},{quoted:mek})
 await conn.sendMessage(from,{ document: { url: file }, fileName: nama + '.apk', mimetype: 'application/vnd.android.package-archive' }, { quoted: mek })
 
 } catch (e) {
