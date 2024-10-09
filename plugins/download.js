@@ -14,7 +14,7 @@
 created by Sadeesha Coder 🕵
 */
 
-
+const { download } = require('aptoide-scraper')
 const { fetchJson } = require('../lib/functions')
 const { cmd, commands } = require('../command')
 
@@ -149,3 +149,36 @@ async(conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, send
         reply(`${e}`)
     }
 })
+
+//＿＿＿＿＿＿＿＿＿＿＿＿＿＿APKDL＿＿＿＿＿＿＿＿＿
+
+cmd({
+    pattern: "apk",
+    alias: ["app"],
+    desc: "download fb videos",
+    category: "download",
+    react: "⬇️",
+    filename: __filename
+},
+async(conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+    try {
+if (!q) return m.reply(`*give me a app name*\n\n_Ex:Whatsapp_`)
+let icon = res.icon
+let paket = res.package
+let size = res.size
+let nama = res.name
+let up = res.lastup
+let file = res.dllink        
+let desc = `*APK DOWNLOAD*
+Nama : ${nama}
+Update : ${up}
+Size : ${size}
+`    
+await conn.sendMessage(from,{image:{url: res.icon},caption:desc},{quoted:mek})
+await conn.sendMessage(from,{ document: { url: file }, fileName: nama + '.apk', mimetype: 'application/vnd.android.package-archive' }, { quoted: mek })
+
+} catch (e) {
+        console.log(e)
+        reply(`${e}`)
+    }
+})     
